@@ -1,1 +1,56 @@
-<p>user works!</p>
+<div class="form-content">
+    <form #myForm="ngForm" *ngIf="!submitted" novalidate>
+      <div class="form-head">
+        <div class="form-head-text">{{title}}</div>
+        <!-- <a ><img class="form-head-image" src="../../assets/images/sign-out.jpg"
+            alt="logo" (click)="signOut()"></a> -->
+      </div>
+      <div class="form-constrains">
+        <div class="row-content">
+          <label for="firstName" class="label text">First Name</label>
+          <br>
+          <input type="text" class="input" pattern="^[a-zA-Z]{4,}$" id="firstName" #firstName="ngModel" name="firstName" placeholder="Your first name.." autocomplete="off" required [(ngModel)]="user.firstName">
+          <span class="error" *ngIf="firstName.errors?.['pattern']"><h6>First Name is Invalid and should be more than 3 characters long</h6></span> 
+          <span class="error" *ngIf="firstName.errors?.['required'] && firstName.touched"><h6> First Name is Required</h6></span>
+        </div>
+        <div class="row-content">
+          <label for="lastName" class="label text">Last Name</label>
+          <br>
+          <input type="text" class="input" pattern="^[a-zA-Z]{4,}$" id="lastName" #lastName="ngModel" name="lastName" placeholder="Your last name.." autocomplete="off" required [(ngModel)]="user.lastName">
+          <span class="error" *ngIf="lastName.errors?.['pattern']"><h6>Last Name is Invalid and should be more than 3 characters long</h6></span> 
+          <span class="error" *ngIf="lastName.errors?.['required'] && lastName.touched"><h6>Last Name is Required</h6></span>
+        </div>
+        <div class="row-content">
+          <label for="email" class="label text">Email</label>
+          <br>
+          <input type="text" class="input" email id="email" #email="ngModel" name="email" placeholder="Your Email Id..." autocomplete="off" required [(ngModel)]="user.email">
+          <span class="error" *ngIf="email.errors?.['email']"><h6>Email is Invalid </h6></span> 
+          <span class="error" *ngIf="email.errors?.['required'] && email.touched"><h6>Email is Required</h6></span>
+        </div>
+        <div class="row-content">
+          <label for="address" class="label text">Address</label>
+          <br>
+          <textarea name="address" id="address" placeholder="Your address.." autocomplete="off" [(ngModel)]="user.address"></textarea>
+          <span class="error"></span>
+        </div>
+        <div class="row-content">
+            <label for="password" class="label text">Password</label>
+            <br>
+            <input type="text" class="input" id="password" minlength="6" #password="ngModel" name="password" placeholder="Your Password..." autocomplete="off" required [(ngModel)]="user.password">
+            <span class="error" *ngIf="password.errors?.['minlength']"><h6>Password should ne atleast 6 characters </h6></span> 
+            <span class="error" *ngIf="password.errors?.['required'] && password.touched"><h6>Password is Required</h6></span>
+          </div>
+        <div class="buttons-contact">
+          <button type="button" class="button button-cancel" id="cancelButton" (click)="returnLogin()" *ngIf="this.Id == null">Cancel</button>
+          <button type="button" class="button button-cancel" id="cancelButton" (click)="returnDashboard()" *ngIf="this.Id != null">Cancel</button>
+          <button type="button" class="button button-submit" id="submitButton" [disabled]="!myForm.valid " (click)="registerUser()" *ngIf="this.Id==null">Add</button>
+          <button type="button" class="button button-submit" id="submitButton" [disabled]="!myForm.valid " (click)="updateUser()" *ngIf="this.Id !=null">Update</button>
+          <button type="reset" class="button button-reset" id="resetButton" >Reset</button>
+        </div>
+      </div>
+    </form>
+    <div class="" *ngIf="submitted">
+      <h2 style="text-align: center;">Submitted Successfully</h2>
+      <h2>Click on dashboard button to go back to dashboard</h2>
+    </div>
+  </div>

@@ -1,16 +1,79 @@
-* {
-    margin: 0;
-    padding: 0;
+.container{
+    background-color:white;
 }
-
-#bar {
-    background-color: blue;
+.header-content{
+    display: flex;
+    background-color: #a03037;
 }
-#menu ul li {
-    display: inline;
-    float: left;
-    padding: 0 10px 0 10px;
+.logo{
+    width: 20px;
+    height: 20px;
+    margin-left: 70px;
+    margin-top: 20px;
 }
-a {
+img{
+    width:  100px;
+}
+.header{
+    margin-left: 20px;
+    font-size: large;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.button{
+    display: flex;
+    justify-content:flex-end;
+    margin: 22px 22px 22px 300px;
+}
+button{
+    font-weight: 800;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: honeydew;
+    margin-left: 20px;
+    border-radius: 15px;
+    border: 1px solid black;
+}
+button:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    background-color: palegoldenrod;
+}
+.out{
+    margin-left: 10px;
+    width: 100px;
+    height: 60px;
+}
+.project-title{
+    color:#e35869;
+    margin-left: 180px;
+    margin-top: 15px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+h1,h2{
     color: white;
+}
+input{
+    height: 30px;
+    width: 400px;
+    margin: 15px 2px 10px 60px;
+    border-radius: 5px;
+    border-color: lightblue;
+}
+input:hover{
+    box-shadow: 3px 3px 2px #a03037;
+}
+.cart-image{
+    width: 40px;
+    height: 40px;
+    margin: 10px 2px 2px 2px;
+}
+.cart-name{
+    margin: 18px 2px 2px 800px;
+    color: white;
+}
+.cart-items{
+    border-radius: 50%;
+    background-color: white;
+    height: 20px;
+    width: 12px;
+    font-weight: bolder;
+    margin-top: 15px;
 }

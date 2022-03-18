@@ -1,22 +1,42 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './MyComponents/user/user.component';
 import { BookComponent } from './MyComponents/book/book.component';
 import { HeaderComponent } from './MyComponents/header/header.component';
+import { LoginComponent } from './MyComponents/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { OrderComponent } from './MyComponents/order/order.component';
+import { CartComponent } from './MyComponents/cart/cart.component';
+import { DashboardComponent } from './MyComponents/dashboard/dashboard.component';
+import { ChangePasswordComponent } from './MyComponents/change-password/change-password.component';
+import { DetailsComponent } from './MyComponents/details/details.component';
+import { DeveloperdetailsComponent } from './MyComponents/developerdetails/developerdetails.component';
+import { UserProfileComponent } from './MyComponents/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     BookComponent,
-    HeaderComponent
+    HeaderComponent,
+    LoginComponent,
+    OrderComponent,
+    CartComponent,
+    DashboardComponent,
+    ChangePasswordComponent,
+    DetailsComponent,
+    DeveloperdetailsComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

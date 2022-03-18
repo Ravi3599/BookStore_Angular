@@ -1,0 +1,11 @@
+<div>
+<ul class="list-group list-group-flush" >
+    <li class="list-group-item"><h5><b>ID      :</b>{{user.data.userID}}</h5></li>
+    <li class="list-group-item"><h5><b>First Name :</b>{{user.data.firstName}}</h5></li>
+    <li class="list-group-item"><h5><b>Last Name  :</b>{{user.data.lastName}}</h5></li>
+    <li class="list-group-item"><h5><b>Email ID   :</b>{{user.data.email}}</h5></li>
+    <li class="list-group-item"><h5><b>Address    :</b>{{user.data.address}}</h5></li>
+  </ul>
+  <button type="button" (click)="editProfile(user.data.userID)">Edit</button>
+  <button type="button" (click)="returnDashboard()"> Cancel</button>
+</div>

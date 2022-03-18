@@ -1,1 +1,77 @@
-<p>book works!</p>
+<div class="form-content">
+    <form #myForm="ngForm" novalidate>
+      <div class="form-head">
+        <div class="form-head-text">{{title}}</div>
+        <a ><img class="form-head-image sign-out" src="../../assets/images/sign-out.jpg"
+            alt="logo" (click)="signOut()"></a>
+      </div>
+      <div class="form-constrains">
+        <div class="row-content">
+          <label for="bookName" class="label text">Book Name</label>
+          <br>
+          <input type="text" class="input" id="bookName" #bookName="ngModel" name="bookName" placeholder="Enter Book Name.." autocomplete="off" required [(ngModel)]="book.bookName">
+          <span class="error" *ngIf="bookName.errors?.['required'] && bookName.touched"><h6> Book Name is Required</h6></span>
+        </div>
+        <div class="row-content">
+          <label for="authorName" class="label text">Author Name</label>
+          <br>
+          <input type="text" class="input" id="authorName" pattern="^[a-zA-Z]{4,}$" #authorName="ngModel" name="authorName" placeholder="Enter Author name.." autocomplete="off" required [(ngModel)]="book.authorName">
+          <span class="error" *ngIf="authorName.errors?.['pattern']"><h6>Author Name is Invalid and should be more than 3 characters long</h6></span> 
+          <span class="error" *ngIf="authorName.errors?.['required'] && authorName.touched"><h6>Author Name is Required</h6></span>
+        </div>
+        <div class="row-content">
+          <label for="bookDescription" class="label text">Book Description</label>
+          <br>
+          <textarea name="bookDescription" id="bookDescription" placeholder="Enter Book Description.." autocomplete="off" [(ngModel)]="book.bookDescription"></textarea>
+          <span class="error"></span>
+        </div>
+        <div class="row-content">
+            <label class="label text" for="profile">Book Image</label>
+            <div class="profile-radio-content">
+                <label>
+                    <!--Used two way binding using ngModel...to bind input and stores the required user value in a variable-->
+                    <input type="radio" id="book1" name="book1" #bookImg="ngModel"
+                        value="../../assets/book1.png" required [(ngModel)]="book.bookImg">
+                    <img class="profile" id="image1" src="../../assets/images/book1.jpg">
+                </label>
+                <label>
+                    <input type="radio" id="profile2" name="book2" #bookImg="ngModel"
+                        value="../../assets/book2.png" required [(ngModel)]="book.bookImg">
+                    <img class="profile" id="image2" src="../../assets/images/book2.jpg">
+                </label>
+                <label>
+                    <input type="radio" id="profile3" name="book3" #bookImg="ngModel"
+                        value="../../assets/book3.png" required [(ngModel)]="book.bookImg">
+                    <img class="profile" id="image3" src="../../assets/images/book3.jpg">
+                </label>
+                <label>
+                    <input type="radio" id="book4" name="book4" #bookImg="ngModel"
+                        value="../../assets/book4.png" required [(ngModel)]="book.bookImg">
+                    <img class="profile" id="image4" src="../../assets/images/book4.jpg">
+                    <!--Added validations to ensure that validated data to be sent to database-->
+                    <span class="text-error" for="text" *ngIf="bookImg.invalid && (bookImg.touched || bookImg.dirty)">Please select profile</span>
+                    <span class="text-error" for="text" *ngIf="bookImg.errors?.['required'] && bookImg.touched">profile is required</span>
+                </label>
+            </div>
+        </div>
+        <div class="row-content">
+            <label for="quantity" class="label text">Quantity</label>
+            <br>
+            <input type="text" class="input" id="quantity" #quantity="ngModel" name="quantity" placeholder="Enter Quantity..." autocomplete="off" required [(ngModel)]="book.quantity">
+            <span class="error" *ngIf="quantity.errors?.['required'] && quantity.touched"><h6>Quantity is Required</h6></span>
+          </div>
+          <div class="row-content">
+            <label for="price" class="label text">Price</label>
+            <br>
+            <input type="text" class="input" id="price" #price="ngModel" name="price" placeholder="Enter Book Price..." autocomplete="off" required [(ngModel)]="book.price">
+            <span class="error" *ngIf="quantity.errors?.['required'] && quantity.touched"><h6>Price is Required</h6></span>
+          </div>
+        <div class="buttons-contact">
+          <button type="button" class="button button-cancel" id="cancelButton" (click)="onDashboard()">Cancel</button>
+          <button type="button" class="button button-submit" id="submitButton" [disabled]="!myForm.valid " (click)="addBook()" *ngIf="this.Id==null">Add</button>
+          <button type="button" class="button button-submit" id="submitButton" [disabled]="!myForm.valid " (click)="updateBook()" *ngIf="!this.Id==null">Update</button>
+          <button type="reset" class="button button-reset" id="resetButton" >Reset</button>
+        </div>
+      </div>
+    </form>
+  </div>

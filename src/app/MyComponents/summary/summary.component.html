@@ -1,0 +1,34 @@
+<!-- <div class="container">
+<div class="card mb-3">
+    <div class="row g-0" *ngFor="let crt of cart.data">
+      <div class="col-md-4" >
+        <img [src]="crt.book.bookImg" class="img-fluid rounded-start" alt="Loading...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{crt.book.bookName}}</h5>
+          <p class="card-text">by {{crt.book.authorName}}</p>
+          <p class="card-text">RS.{{crt.book.price * crt.quantity}}</p>
+            <button type="button" class="checkout" (click)="orderDetails()">Checkout</button>
+        </div>
+      </div>
+    </div>  
+  </div>
+</div> -->
+<div class="container">
+  <div class="card mb-3">
+      <div class="row g-0" *ngFor="let ordr of order.data">
+        <div class="col-md-4" >
+          <img [src]="ordr.book.bookImg" class="img-fluid rounded-start" alt="Loading...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ordr.book.bookName}}</h5>
+            <p class="card-text">by {{ordr.book.authorName}}</p>
+            <p class="card-text">RS.{{ordr.book.price * ordr.quantity}}</p>
+              <button type="button" class="checkout" (click)="orderDetails(ordr.orderID)">Checkout</button>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>

@@ -19,8 +19,8 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getUserRecordById(this.Id).subscribe((getData:any)=>{
-      console.log("User Record for given mail retrieved successfully",getData);
-      this.user=getData.data;
+      console.log("User Record for given token retrieved successfully",getData);
+      this.user=getData;
     })
   }
   returnLogin(){

@@ -14,14 +14,14 @@ export class OrderService {
   getAllOrders(){
     return this.http.get("http://localhost:8080/orderdetails/retrieveAllOrders");
   }
-  getCartRecordById(Id:any){
+  getOrderRecordById(Id:any){
     return this.http.get("http://localhost:8080/orderdetails/retrieveOrder/"+Id);
   }
-  updateCartRecordById(Id:any,order:any){
+  updateOrderRecordById(Id:any,order:any){
     return this.http.put("http://localhost:8080/orderdetails/updateOrder/"+Id,order);
   }
-  deleteCartRecordById(Id:any){
-    return this.http.delete("http://localhost:8080/cartdetails/deleteOrder/"+Id);
+  deleteOrderRecordById(Id:any){
+    return this.http.delete("http://localhost:8080/orderdetails/deleteOrder/"+Id);
   }
 
 

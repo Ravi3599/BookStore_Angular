@@ -19,6 +19,7 @@ export class CartComponent implements OnInit {
   cart:any;
   quantity:any;
   user:any;
+  book:any;
   customerDetails=false;
   orderSummary=false;
   order:Order= new Order(0,'',0,0,0,true);
@@ -34,6 +35,10 @@ export class CartComponent implements OnInit {
      console.log("User data retrieved successfully for given token",data);
      this.user=data;
    });
+   this.bookService.getBookRecordById(this.cart.data.bookID).subscribe(data=>{
+     console.log("Book data retrieved",data);
+     this.book = data;
+   })
   }
 
   deleteCart(cartId:any){
@@ -49,19 +54,25 @@ export class CartComponent implements OnInit {
   searchBook(){
     this.router.navigate(['dashboard',this.token]);
   }
-  placeOrder(){
-    //console.log(this.cart.data.book.bookID);
-    this.customerDetails=true;
-    this.order.userID=this.user.data.userID;
-    this.order.bookID=this.cart.data.get(this.cart.cartID).book.bookID;
-    this.order.quantity=this.cart.data.quantity;
-    this.order.price=this.cart.data.price;
+  placeOrder(crt:any){
+    // console.log("data",this.cart.data.book.data.bookID);
+    // this.customerDetails=true;
+    this.order.userID=crt.user.userID;
+    this.order.bookID=crt.book.bookID;
+    this.order.quantity=crt.quantity;
+    this.order.price=crt.price * crt.quantity;
     this.order.address=this.user.data.address;
-    this.order.cancel=true;
+    this.order.cancel=false;
     this.orderService.postOrder(this.order).subscribe((getData:any)=>{
       console.log("Order Placed !",getData);
-      this.order=getData.data;
-    });
+      this.order=getData;
+      console.log(this.order);
+      });
+      this.router.navigate(['customer',this.token]);
+
+    // this.service.deleteCartRecordById(crt.cartID).subscribe(data=>{
+    //   console.log("Cart removed !");
+    // })
   }
   decreaseQuantity(Id:any){
     this.service.decreaseCartQuantity(Id).subscribe(data=>{
@@ -86,6 +97,9 @@ export class CartComponent implements OnInit {
   }
   onDashboard(){
     this.router.navigate(['dashboard',this.token]);
+  }
+  orderDetails(){
+    this.router.navigate(['order']);
   }
   // addCart(){
   //   this.service.postCart(this.cart).subscribe(data=>{

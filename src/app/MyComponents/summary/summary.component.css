@@ -1,4 +1,4 @@
-  .container{
+.container{
     background-color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
@@ -9,7 +9,7 @@
     height: auto;
     border: 2px solid lightgray;
     margin-top: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color:white;
   }
   .row{
@@ -124,6 +124,8 @@
   .checkout{
     margin-top: 60px;
     margin-left: 500px;
+    background-color: #a03037;
+    color: white;
   }
   input{
     border-radius: 5px;

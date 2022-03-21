@@ -40,19 +40,6 @@
     </div>
   </div> -->
   <div class="container">
-    <div class="heading">
-      <!-- <div class="heading-container">
-          <div class="app-heading"> -->
-          <img src="../../assets/icons/store.png" alt="Logo is loading..." class="logo" (click)="onDashboard()">
-          <h6 style="margin-top: 20px;color: white;" (click)="onDashboard()">Bookstore</h6>
-          <!-- </div> -->
-      <!-- </div> -->
-      <!-- <button type="button" class="sortby" (click)="sortAsc()">Asc</button> -->
-  <input type="text" class="search" placeholder="  search products..." name="search" [(ngModel)]="search" (click)="searchBook()">
-  <p class="cart-name">cart</p>
-      <img src="../../assets/icons/cart.svg" alt="cart image is loading..." class="cart-image" (click)="goToCart()">
-      <p class="cart-items">{{cart.data.length}}</p>
-  </div>
     <div class="card mb-3">
       <h5 class="cart-heading">My cart({{cart.data.length}})</h5>
       <div class="row g-0" *ngFor="let crt of cart.data">
@@ -65,19 +52,20 @@
             <p class="card-text">by {{crt.book.authorName}}</p>
             <p class="card-text">RS.{{crt.book.price}}</p>
             <div class="quantity-change">
-              <button type="button" class="quantity-button" (click)="decreaseQuantity(this.crt.cartID)">-</button>
+              <button type="button" class="btn  quantity-button" (click)="decreaseQuantity(this.crt.cartID)" *ngIf="crt.quantity==2">-</button>
               <input type="text" name="quantity" class="book-quantity" [(ngModel)]="crt.quantity">
-              <button type="button" class="quantity-button" (click)="increaseQuantity(this.crt.cartID)">+</button>
+              <button type="button" class="btn  quantity-button" (click)="increaseQuantity(this.crt.cartID)">+</button>
               <a class="remove" (click)="deleteCart(crt.cartID)">Remove</a>
             </div>
             <div class="place-order">
-              <button type="button" class="placeorder-button" (click)="placeOrder()">Place Order</button>
+              <button type="button" class="btn placeorder-button" (click)="placeOrder(crt)">Place Order</button>
             </div>
           </div>
         </div>
       </div>  
     </div>
-    <div class="customer" *ngIf="this.customerDetails==true">
+    <router-outlet></router-outlet>
+    <!-- <div class="customer" *ngIf="this.customerDetails==true">
           <h5>Customer Details</h5>
         <div class="form-constrains">
           <div class="row-content">
@@ -113,10 +101,10 @@
             <h5 class="card-title">{{crt.book.bookName}}</h5>
             <p class="card-text">by {{crt.book.authorName}}</p>
             <p class="card-text">RS.{{crt.book.price * crt.quantity}}</p>
-              <button type="button" class="checkout">Checkout</button>
+              <button type="button" class="checkout" (click)="orderDetails()">Checkout</button>
           </div>
         </div>
       </div>  
-    </div>
+    </div> -->
 </div>
    

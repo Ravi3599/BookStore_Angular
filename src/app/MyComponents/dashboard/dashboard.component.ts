@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Cart } from 'src/app/Model/Cart';
 import { BookService } from 'src/app/MyService/book.service';
 import { CartService } from 'src/app/MyService/cart.service';
+import { InteractionService } from 'src/app/MyService/interaction.service';
 import { UserService } from 'src/app/MyService/user.service';
 
 @Component({
@@ -18,7 +19,9 @@ export class DashboardComponent implements OnInit {
   carts:any;
   cart:Cart =  new Cart(0,0,0);
   token:any=this.route.snapshot.paramMap.get('token');
-  constructor(private router:Router,private route:ActivatedRoute,private userService:UserService,private service:BookService,private cartService:CartService) { }
+  sort!:string;
+  selected:boolean=false;
+  constructor(private router:Router,private route:ActivatedRoute,private userService:UserService,private service:BookService,private cartService:CartService,private iteraction:InteractionService) { }
 
   ngOnInit(): void {
     this.service.getBookRecords().subscribe(data=>{
@@ -30,36 +33,36 @@ export class DashboardComponent implements OnInit {
       this.carts=data;
     });
     this.userService.getUserRecordByToken(this.token).subscribe((getData:any)=>{
-      console.log("Data retrieved successfully");
+      console.log("User record retrieved successfully");
       this.user=getData.data;
-    })
+    });
+    this.iteraction.teacherMessage$.subscribe(message=>{
+      console.log("Search retrieved",message);
+      this.search=message;
+      this.service.getBookRecordByBookName(this.search).subscribe((getData:any)=>{
+        console.log("Book record retrieved",getData);
+        this.books=getData;
+      });
+    });
+    //  console.log("Token from dashboard",this.token);
+    //  this.iteraction.sendToken(this.token); 
   }
   addToCart(Id:any){
       this.cart.bookID=Id;
       this.cart.userID=this.user.userID;
       this.cart.quantity=1;
       console.log(this.cart);
-      this.cartService.postCart(this.cart).subscribe(data =>{
+      this.cartService.postCart(this.cart).subscribe((getData:any) =>{
         console.log("Cart Added !");
-      })
+        this.cart=getData.data;
+        window.location.reload();
+      });
+      this.selected=true;  
   }
-  sortAsc(){
-      this.service.sortAscedingByPrice().subscribe(data=>{
-        console.log("data got sorted in asceding order of price");
-        this.books=data;
-      })
-  }
-  sortDesc(){
-    this.service.sortDescendingByPrice().subscribe(data=>{
-      console.log("data got sorted in desceding order of price");
-      this.books=data;
-    })
-  }
-  displayBook(){
-    this.service.getBookRecordByBookName(this.search).subscribe((getData:any)=>{
-      console.log("Book record retrieved");
-      this.books=getData;
-    });
+  
+  sendToken(){
+    console.log("Token on dashboard",this.token);
+    this.iteraction.sendMessage(this.token);
   }
   goToCart(){
     console.log(this.token);
@@ -69,20 +72,4 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['dashboard',this.token]);
   }
   
-  // getBook(){
-  //   this.router.navigate(['book']);
-  // }
-  // getCart(){
-  //   this.router.navigate(['cart']);
-  // }
-  // getOrder(){
-  //   this.router.navigate(['order']);
-  // }
-  // signOut(){
-  //   this.router.navigate(['login']);
-  // }
-  // getDetails(){
-  //   this.router.navigate(['details']);
-  // }
-
 }

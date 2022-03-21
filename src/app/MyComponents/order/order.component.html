@@ -1,4 +1,4 @@
-<div class="form-content">
+<!-- <div class="form-content">
     <form #myForm="ngForm" *ngIf="!submitted" novalidate>
       <div class="form-head">
         <div class="form-head-text">{{title}}</div>
@@ -37,7 +37,7 @@
             <label class="label text" for="profile">Order Status</label>
             <div class="profile-radio-content">
                 <label>
-                    <!--Used two way binding using ngModel...to bind input and stores the required order value in a variable-->
+                    Used two way binding using ngModel...to bind input and stores the required order value in a variable
                     <input type="radio" id="book1" name="book1" #status="ngModel"
                         value=true required [(ngModel)]="order.cancel">
                     <span>Place order</span>
@@ -61,5 +61,33 @@
     <div class="" *ngIf="submitted">
       <h2 style="text-align: center;">Submitted Successfully</h2>
       <h2>Click on dashboard button to go back to dashboard</h2>
+    </div>
+  </div> -->
+  <div class="container">
+    <div class="order-image">
+      <img src="../../assets/icons/order-placed.png" alt="Loading...">
+      <h4 class="order-heading">Order Placed Successfully</h4>
+    </div>
+    <div class="message" *ngFor="let ordr of order.data">
+      <h6>hurray!!!your order is confirmed</h6>
+      <h6>the order id  is #{{ordr.orderID}} save the order id for</h6>
+      <h6>further communication.</h6>
+    </div>
+    <div class="table-details">
+      <table>
+        <thead>
+          <th>Email Us</th>
+          <th>Contact Us</th>
+          <th>Address</th>
+        </thead>
+        <tr>
+          <td>ravirenapukar@gmail.com</td>
+          <td>+91 9876543210</td>
+          <td>No Way Home !</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <button type="button" (click)="goToDashboard()" >Continue Shopping</button>
     </div>
   </div>

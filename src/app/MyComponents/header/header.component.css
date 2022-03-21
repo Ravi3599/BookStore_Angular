@@ -4,19 +4,22 @@
 .header-content{
     display: flex;
     background-color: #a03037;
+    border-radius: 5px;
 }
 .logo{
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 30px;
     margin-left: 70px;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 img{
     width:  100px;
 }
 .header{
     margin-left: 20px;
-    font-size: large;
+    margin-top: 5px;
+    font-size: x-large;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 .button{
@@ -66,7 +69,7 @@ input:hover{
     margin: 10px 2px 2px 2px;
 }
 .cart-name{
-    margin: 18px 2px 2px 800px;
+    margin: 18px 2px 2px 300px;
     color: white;
 }
 .cart-items{

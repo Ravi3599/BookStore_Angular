@@ -16,7 +16,9 @@ import { ChangePasswordComponent } from './MyComponents/change-password/change-p
 import { DetailsComponent } from './MyComponents/details/details.component';
 import { DeveloperdetailsComponent } from './MyComponents/developerdetails/developerdetails.component';
 import { UserProfileComponent } from './MyComponents/user-profile/user-profile.component';
-
+import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { CustomerComponent } from './MyComponents/customer/customer.component';
+import { SummaryComponent } from './MyComponents/summary/summary.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,13 +32,16 @@ import { UserProfileComponent } from './MyComponents/user-profile/user-profile.c
     ChangePasswordComponent,
     DetailsComponent,
     DeveloperdetailsComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    CustomerComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -57,11 +57,16 @@
               <button type="button" class="btn  quantity-button" (click)="increaseQuantity(this.crt.cartID)">+</button>
               <a class="remove" (click)="deleteCart(crt.cartID)">Remove</a>
             </div>
-            <div class="place-order">
+            <!-- <div class="place-order">
               <button type="button" class="btn placeorder-button" (click)="placeOrder(crt)">Place Order</button>
-            </div>
+            </div> -->
           </div>
+          
         </div>
+        
+      </div>
+      <div class="place-order" >
+        <button type="button" class="btn placeorder-button" (click)="placeOrder()">Place Order</button>
       </div>  
     </div>
     <router-outlet></router-outlet>

@@ -29,4 +29,7 @@ export class CartService {
   increaseCartQuantity(Id:any){
     return this.http.get("http://localhost:8080/cartdetails/increaseQuantity/"+Id);
   }
+  getCartRecordByBookId(Id:any){
+    return this.http.get("http://localhost:8080/cartdetails/retrieveCartByBookId/"+Id);
+  }
 }

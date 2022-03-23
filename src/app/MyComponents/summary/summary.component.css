@@ -122,14 +122,20 @@
     margin-left: 850px;
   }
   .checkout{
-    margin-top: 60px;
-    margin-left: 500px;
+    margin-top: 40px;
+    margin-left: 750px;
+    margin-bottom: 20px;
     background-color: #a03037;
     color: white;
+    width: 150px;
   }
   input{
     border-radius: 5px;
   }
   .btn{
     color: white;
+  }
+  .order-title{
+    color: #a03037;
+    margin-left: 20px
   }

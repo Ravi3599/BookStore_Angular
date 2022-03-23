@@ -68,9 +68,9 @@
       <img src="../../assets/icons/order-placed.png" alt="Loading...">
       <h4 class="order-heading">Order Placed Successfully</h4>
     </div>
-    <div class="message" *ngFor="let ordr of order.data">
+    <div class="message" >
       <h6>hurray!!!your order is confirmed</h6>
-      <h6>the order id  is #{{ordr.orderID}} save the order id for</h6>
+      <h6>the order id  is</h6><h6 *ngFor="let ordr of order.data"> #{{ordr.orderID}}</h6><h6>save the order id for</h6>
       <h6>further communication.</h6>
     </div>
     <div class="table-details">
@@ -88,6 +88,7 @@
       </table>
     </div>
     <div>
-      <button type="button" (click)="goToDashboard()" >Continue Shopping</button>
+      <!-- <button type="button" (click)="goToDashboard()" >Continue Shopping</button> -->
     </div>
+    <button type="button" (click)="goToDashboard()" >Continue Shopping</button>
   </div>

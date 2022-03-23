@@ -1,37 +1,57 @@
 
 <div class="container">
+    <div class="heading">
+         <!-- <div class="heading-container">
+            <div class="app-heading">
+            <img src="../../assets/icons/store.png" alt="Logo is loading..." class="logo" (click)="onDashboard()">
+            <h6 style="margin-top: 20px;color: white;"(click)="onDashboard()" >Bookstore</h6> -->
+            <!-- </div> -->
+        <!-- </div> -->
+        <!-- <button type="button" class="sortby" (click)="sortAsc()">Asc</button> -->
+    </div>
     <div class="sort-ways">
         <div class="item-name">
             <h5>Books</h5>
         </div>
     <div class="no-books">
-        <h4 class="no-of-books">({{books.data.length}})</h4>
+        <h4 class="no-of-books">({{books.data.length}} items)</h4>
     </div>  
-    <input type="text" class="search" placeholder="  search products..." name="search" [(ngModel)]="search" >
-        <div class="sort-book" >
-        <select class="sortby">
-            <option value="Relevance">Sort By Relevence</option>
+    <input type="text" class="search" placeholder="  search products..." name="search" [(ngModel)]="search" (click)="displayBook()">
+
+    <div class="sort-book">
+
+        <select class="sortby" [(ngModel)]="this.sort" (change)="onChange()">
+            <option selected value="Relevance">Sort By Relevence</option>
             <option value="Ascending">Price:Low to High</option>
-            <option value="Descending" >Price:High to Low</option>
+            <option value="Descending">Price:High to Low</option>
         </select>
     </div>
     <p class="cart-name">cart</p>
         <img src="../../assets/icons/cart.svg" alt="cart image is loading..." class="cart-image" (click)="goToCart()">
         <p class="cart-items">{{carts.data.length}}</p>
-
     </div>
     <div class="book-container">
         <div class="card card-container" *ngFor="let book of books.data">
             <div class="book-image">
                 <img [src]="book.bookImg" class="card-img-top" alt="Book Image is loading...">
+                <h6 class="first-txt" *ngIf="book.quantity==null">Out Of Stock</h6>
             </div>
             <div class="card-body">
             <h5 class="card-title">{{book.bookName}}</h5>
             <p class="card-text">by {{book.authorName}}</p>
             <p class="card-text">RS.{{book.price}}</p>
-            <div class="button-container">
-            <button type="button" class="button" (click)="addToCart(book.bookID)">Add to Bag</button>
-            <button type="button" class="button wishlist">Wishlist</button>
+            <div class="button-container" >
+                <!-- <ng-container *ngFor="let i of index"> -->
+                <!-- <button type="button" class="button" (click)="addToCart(book.bookID)" *ngIf="book.quantity!=null &&  this.carts.data[0].book.bookID!=book.bookID">Add to Bag</button>
+                <button type="button" class="button button-added"  *ngIf="this.carts.data[0].book.bookID==book.bookID" (click)="alreadyAdded()">Added to Bag</button>
+                <button type="button" class="button wishlist" *ngIf="book.quantity!=null && this.carts.data[0].book.bookID!=book.bookID">Wishlist</button>
+                <button type="button" class="button only-wishlist" *ngIf="book.quantity==null && this.carts.data[0].book.bookID!=book.bookID">Wishlist</button> -->
+                <!-- </ng-container> -->
+                <button type="button" class="button" (click)="addToCart(book.bookID)" *ngIf="book.quantity!=null">Add to Bag</button>
+                <!-- <button type="button" class="button button-added"  *ngIf="this.carts.data[0].book.bookID==book.bookID" (click)="alreadyAdded()">Added to Bag</button> -->
+                <button type="button" class="button wishlist" *ngIf="book.quantity!=null">Wishlist</button>
+                <button type="button" class="button only-wishlist" *ngIf="book.quantity==null">Wishlist</button>
+
             </div>
             </div>
         </div>

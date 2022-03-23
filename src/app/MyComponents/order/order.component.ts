@@ -38,10 +38,15 @@ export class OrderComponent implements OnInit {
   }
 
   goToDashboard(){
-    this.service.deleteOrderRecordById(this.order.data[0].orderID).subscribe(data=>{
+    for(let i=0;i<this.order.data.length;i++){
+    this.service.deleteOrderRecordById(this.order.data[i].orderID).subscribe(data=>{
       console.log(data);
-      this.router.navigate(['dashboard',this.token]);
-    })
+      
+      // this.router.navigate(['dashboard',this.token]);
+    });
+  }
+    this.router.navigate(['dashboard',this.token]);
+
   }
   // placeOrder(){
   //   this.service.postOrder(this.order).subscribe(data=>{

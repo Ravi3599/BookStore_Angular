@@ -54,25 +54,50 @@ export class CartComponent implements OnInit {
   searchBook(){
     this.router.navigate(['dashboard',this.token]);
   }
-  placeOrder(crt:any){
+  // 
+  // placeOrder(crt:any){
+  //   // console.log("data",this.cart.data.book.data.bookID);
+  //   // this.customerDetails=true;
+  //   this.order.userID=crt.user.userID;
+  //   this.order.bookID=crt.book.bookID;
+  //   this.order.quantity=crt.quantity;
+  //   this.order.price=crt.price * crt.quantity;
+  //   this.order.address=this.user.data.address;
+  //   this.order.cancel=false;
+  //   this.orderService.postOrder(this.order).subscribe((getData:any)=>{
+  //     console.log("Order Placed !",getData);
+  //     this.order=getData;
+  //     console.log(this.order);
+  //     });
+  //     this.router.navigate(['customer',this.token]);
+
+  //   // this.service.deleteCartRecordById(crt.cartID).subscribe(data=>{
+  //   //   console.log("Cart removed !");
+  //   // })
+  // }
+  placeOrder(){
     // console.log("data",this.cart.data.book.data.bookID);
     // this.customerDetails=true;
-    this.order.userID=crt.user.userID;
-    this.order.bookID=crt.book.bookID;
-    this.order.quantity=crt.quantity;
-    this.order.price=crt.price * crt.quantity;
-    this.order.address=this.user.data.address;
-    this.order.cancel=false;
-    this.orderService.postOrder(this.order).subscribe((getData:any)=>{
-      console.log("Order Placed !",getData);
-      this.order=getData;
-      console.log(this.order);
-      });
-      this.router.navigate(['customer',this.token]);
+    for(let i=0;i< this.cart.data.length;i++){
+      this.order.userID=this.user.data.userID;
+      this.order.bookID=this.cart.data[i].book.bookID;
+      this.order.quantity=this.cart.data[i].quantity;
+      this.order.price=this.cart.data[i].price ;
+      this.order.address=this.user.data.address;
+      this.order.cancel=false;
+      this.orderService.postOrder(this.order).subscribe((getData:any)=>{
+        console.log("Order Placed !",getData);
+        this.order=getData;
+        console.log(this.order);
+        });
+        // this.router.navigate(['customer',this.token]);
 
-    // this.service.deleteCartRecordById(crt.cartID).subscribe(data=>{
-    //   console.log("Cart removed !");
-    // })
+      this.service.deleteCartRecordById(this.cart.data[i].cartID).subscribe(data=>{
+      console.log("Cart removed !");
+    })
+    }
+    this.router.navigate(['customer',this.token]);
+
   }
   decreaseQuantity(Id:any){
     this.service.decreaseCartQuantity(Id).subscribe(data=>{

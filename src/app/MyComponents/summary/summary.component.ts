@@ -35,7 +35,7 @@ export class SummaryComponent implements OnInit {
   })
   }
 
-  orderDetails(Id:any){
-    this.router.navigate(['order',Id]);
+  orderDetails(){
+    this.router.navigate(['order']);
   }
 }

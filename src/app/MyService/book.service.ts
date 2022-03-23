@@ -30,6 +30,6 @@ export class BookService {
     return this.http.get("http://localhost:8080/bookdetails/sortAsc");
   }
   sortDescendingByPrice(){
-    return this.http.get("http://localhost:8080/bookdetails/sortAsc");
+    return this.http.get("http://localhost:8080/bookdetails/sortDesc");
   }
 }

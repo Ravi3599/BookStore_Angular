@@ -59,27 +59,7 @@ export class CartComponent implements OnInit {
   searchBook(){
     this.router.navigate(['dashboard',this.token]);
   }
-  // 
-  // placeOrder(crt:any){
-  //   // console.log("data",this.cart.data.book.data.bookID);
-  //   // this.customerDetails=true;
-  //   this.order.userID=crt.user.userID;
-  //   this.order.bookID=crt.book.bookID;
-  //   this.order.quantity=crt.quantity;
-  //   this.order.price=crt.price * crt.quantity;
-  //   this.order.address=this.user.data.address;
-  //   this.order.cancel=false;
-  //   this.orderService.postOrder(this.order).subscribe((getData:any)=>{
-  //     console.log("Order Placed !",getData);
-  //     this.order=getData;
-  //     console.log(this.order);
-  //     });
-  //     this.router.navigate(['customer',this.token]);
 
-  //   // this.service.deleteCartRecordById(crt.cartID).subscribe(data=>{
-  //   //   console.log("Cart removed !");
-  //   // })
-  // }
   placeOrder(){
     // console.log("data",this.cart.data.book.data.bookID);
     // this.customerDetails=true;
@@ -131,13 +111,5 @@ export class CartComponent implements OnInit {
   orderDetails(){
     this.router.navigate(['order']);
   }
-  // addCart(){
-  //   this.service.postCart(this.cart).subscribe(data=>{
-  //     console.log("Cart Saved Successfully");
-  //     this.router.navigate(['order']);
-  //   })
-  // }
-  // signOut(){
-  //   this.router.navigate(['login']);
-  // }
+  
 }

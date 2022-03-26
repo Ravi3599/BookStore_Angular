@@ -25,11 +25,6 @@ export class HeaderComponent implements OnInit {
       console.log("cart data retrieved",data);
       this.cart=data;
     }); 
-    //  this.interaction.teacher$.subscribe(message=>{
-    //  console.log("token retrieved",message);
-    //  this.token=message;
-    //  console.log(this.token);
-    //  });
   }
   signOut(){
     this.router.navigate(["login"]);
@@ -52,22 +47,4 @@ export class HeaderComponent implements OnInit {
     this.loggedIn=true;
     this.router.navigate(['login']);
   }
-
-  // toUser(){
-  //   this.router.navigate(['user']);
-  // }
-  // toBook(){
-  //   this.router.navigate(['book']);
-  // }
-  // toCart(){
-  //   this.router.navigate(['cart']);
-  // }
-  // toOrder(){
-  //   this.router.navigate(['order']);
-  // }
-  // signOut(){
-  //   this.loggedIn=false;
-  //   this.router.navigate(['login']);
-  // }
-
 }

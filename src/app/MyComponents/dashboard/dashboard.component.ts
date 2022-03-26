@@ -56,14 +56,7 @@ export class DashboardComponent implements OnInit {
     //    this.wishlists=data;
     //  })
      this.sort="Relevance";
-    // this.iteraction.teacherMessage$.subscribe(message=>{
-    //   console.log("Search retrieved",message);
-    //   this.search=message;
-    //   this.service.getBookRecordByBookName(this.search).subscribe((getData:any)=>{
-    //     console.log("Book record retrieved",getData);
-    //     this.books=getData;
-    //   });
-    // });
+    
     console.log("data",this.books.data.length);
     for (let i = 0; i < this.books.data.length; i++) {
       for (let index = 0; index < this.carts.data.length; index++) {
@@ -76,17 +69,7 @@ export class DashboardComponent implements OnInit {
     //  console.log("Token from dashboard",this.token);
     //  this.iteraction.sendToken(this.token); 
   }
-// addToCart(Id:any){
-//       this.cart.bookID=Id;
-//       this.cart.userID=this.user.userID;
-//       this.cart.quantity=1;
-//       console.log(this.cart);
-//       this.cartService.postCart(this.cart).subscribe((getData:any) =>{
-//         console.log("Cart Added !");
-//         this.cart=getData.data;
-//         window.location.reload();
-//       });  
-//   }
+
 addToCart(Id:any){
   // console.log(this.carts.data.length);
     if(this.carts.data.length == 0){
@@ -126,15 +109,7 @@ addToCart(Id:any){
   alreadyAdded(){
     alert("Book is already added");
   }
-// find(Id:any){
-//   console.log("find");
-//     for (let i = 0; i < this.carts.data.length; i++) {
-//       if(Id==this.carts.data[i].bookID){
-//         this.selected=true;
-//         console.log("Value",this.selected);  
-//       }  
-//     }
-//   }
+
 sortAsc(){
     this.service.sortAscedingByPrice().subscribe(data=>{
       console.log("data got sorted in asceding order of price");

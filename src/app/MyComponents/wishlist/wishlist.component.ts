@@ -30,14 +30,6 @@ export class WishlistComponent implements OnInit {
   //   //   this.user=data;
   //   // });
     
-  //   this.interaction.teacherMessage$.subscribe(message=>{
-  //     console.log("Wishlist data retrieved",message);
-  //     this.BookID=message;
-  //     this.bookService.getBookRecordById(this.BookID).subscribe(data=>{
-  //       console.log("Book data retrieved for wishlist",data);
-  //       this.books=data;
-  //     })
-  // });
     // this.wishlistService.getAllWishlistRecords().subscribe(data=>{
     //   console.log("Wishlist data retrieved successfully",data);
     //   this.wishlists=data;

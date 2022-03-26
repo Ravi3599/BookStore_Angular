@@ -30,10 +30,7 @@ export class OrderComponent implements OnInit {
         this.token=getData.data;
       })
     })
-    //  this.userService.getToken(this.email).subscribe((getData:any)=>{
-    //    console.log("Token retrieved successfully");
-    //    this.token=getData.data;
-    //  })
+    
 
   }
 
@@ -48,13 +45,4 @@ export class OrderComponent implements OnInit {
     this.router.navigate(['dashboard',this.token]);
 
   }
-  // placeOrder(){
-  //   this.service.postOrder(this.order).subscribe(data=>{
-  //     console.log("Order Placed ! Hurray...");
-  //     this.router.navigate(['dashboard']);
-  //   })
-  // }
-  // signOut(){
-  //   this.router.navigate(['login']);
-  // }
 }

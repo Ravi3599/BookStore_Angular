@@ -3,10 +3,14 @@
         <h1>Login</h1>
         <div class="content">
             <div class="input-field">
-                <input type="email" name="email" placeholder="Email" autocomplete="nope" [(ngModel)]="login.email">
+                <input type="email" name="email" #email="ngModel" placeholder="Email" autocomplete="nope" [(ngModel)]="login.email">
+                <span class="error" *ngIf="email.errors?.['email']"><h6>Email is Invalid </h6></span> 
+                <span class="error" *ngIf="email.errors?.['required'] && email.touched"><h6>Email is Required</h6></span>
             </div>
             <div class="input-field">
-                <input type="password" name="password" placeholder="Password" autocomplete="new-password" [(ngModel)]="login.password">
+                <input type="password" name="password" #password="ngModel" minlength="4" placeholder="Password" autocomplete="new-password" [(ngModel)]="login.password">
+                <span class="error" *ngIf="password.errors?.['minlength']"><h6>Password should ne atleast 6 characters </h6></span> 
+                <span class="error" *ngIf="password.errors?.['required'] && password.touched"><h6>Password is Required</h6></span>
             </div>
             <a routerLink="/changePassword" class="link">Forgot Your Password</a>
         </div>

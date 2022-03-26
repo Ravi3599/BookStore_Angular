@@ -27,13 +27,18 @@ export class CartComponent implements OnInit {
   constructor(private router:Router,private bookService:BookService,private service:CartService,private userService:UserService,private orderService:OrderService,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.service.getAllCartRecords().subscribe(getData=>{
-      console.log("Cart Data Retrieved successfully",getData);
-      this.cart=getData;
-   });
+  //   this.service.getAllCartRecords().subscribe(getData=>{
+  //     console.log("Cart Data Retrieved successfully",getData);
+  //     this.cart=getData;
+  //  });
+   
     this.userService.getUserRecordByToken(this.token).subscribe(data=>{
      console.log("User data retrieved successfully for given token",data);
      this.user=data;
+     this.service.getCartRecordByUserId(this.user.data.userID).subscribe(getData=>{
+      console.log("Cart Data Retrieved successfully",getData);
+      this.cart=getData;
+   });
    });
    this.bookService.getBookRecordById(this.cart.data.bookID).subscribe(data=>{
      console.log("Book data retrieved",data);

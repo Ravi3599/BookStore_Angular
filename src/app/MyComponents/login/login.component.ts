@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       },error=>{
         alert("Invalid username or password");
       });
-    }, 3000);
+    }, 1000);
     //this.router.navigate(['dashboard']);
   }
   

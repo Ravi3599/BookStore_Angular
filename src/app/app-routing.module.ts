@@ -13,6 +13,7 @@ import { OrderComponent } from './MyComponents/order/order.component';
 import { SummaryComponent } from './MyComponents/summary/summary.component';
 import { UserProfileComponent } from './MyComponents/user-profile/user-profile.component';
 import { UserComponent } from './MyComponents/user/user.component';
+import { WishlistComponent } from './MyComponents/wishlist/wishlist.component';
 
 const routes: Routes = [
   {path:"",redirectTo:"/login",pathMatch:"full"},
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path:"profile/:email",component:UserProfileComponent},
   {path:"ordersummary",component:SummaryComponent},
   {path:"order/:Id",component:OrderComponent},
+  {path:"wishlist/:token",component:WishlistComponent},
   {path:"**",component:LoginComponent}
   ];
 

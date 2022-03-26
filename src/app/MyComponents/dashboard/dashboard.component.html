@@ -26,7 +26,9 @@
             <option value="Descending">Price:High to Low</option>
         </select>
     </div>
-    <p class="cart-name">cart</p>
+    <img src="../../assets/icons/wishlist.svg" alt="wishlist image is loading..." class="cart-image img-wishlist" (click)="goToWishlist()">
+    <p class="cart-items">{{wishlists.data.length}}</p>
+    <!-- <p class="cart-name">cart</p> -->
         <img src="../../assets/icons/cart.svg" alt="cart image is loading..." class="cart-image" (click)="goToCart()">
         <p class="cart-items">{{carts.data.length}}</p>
     </div>
@@ -49,7 +51,7 @@
                 <!-- </ng-container> -->
                 <button type="button" class="button" (click)="addToCart(book.bookID)" *ngIf="book.quantity!=null">Add to Bag</button>
                 <!-- <button type="button" class="button button-added"  *ngIf="this.carts.data[0].book.bookID==book.bookID" (click)="alreadyAdded()">Added to Bag</button> -->
-                <button type="button" class="button wishlist" *ngIf="book.quantity!=null">Wishlist</button>
+                <button type="button" class="button wishlist" *ngIf="book.quantity!=null" (click)="moveToWishlist(book.bookID)">Wishlist</button>
                 <button type="button" class="button only-wishlist" *ngIf="book.quantity==null">Wishlist</button>
 
             </div>

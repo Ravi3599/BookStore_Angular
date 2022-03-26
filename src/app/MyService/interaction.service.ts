@@ -6,13 +6,13 @@ import { Subject } from 'rxjs';
 })
 export class InteractionService {
 
-  private _teacherMessageSource = new Subject<string>();
+  private _teacherMessageSource = new Subject<Number>();
   teacherMessage$ = this._teacherMessageSource.asObservable();
   private _teacherMessage = new Subject<string>();
   teacher$ = this._teacherMessage.asObservable();
   constructor() { }
 
-  sendMessage(message:string){
+  sendMessage(message:number){
     this._teacherMessageSource.next(message);
   }
    sendToken(message:string){

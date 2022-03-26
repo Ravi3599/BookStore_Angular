@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cart } from 'src/app/Model/Cart';
+import { Wishlist } from 'src/app/Model/Wishlist';
 import { BookService } from 'src/app/MyService/book.service';
 import { CartService } from 'src/app/MyService/cart.service';
 import { InteractionService } from 'src/app/MyService/interaction.service';
 import { UserService } from 'src/app/MyService/user.service';
+import { WishlistService } from 'src/app/MyService/wishlist.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,22 +24,38 @@ export class DashboardComponent implements OnInit {
   sort!:string;
   tempProduct:any;
   selected:boolean=false;
-  index:number[]=[0,1,2,3,4,5,6,7,8,9];
-  constructor(private router:Router,private route:ActivatedRoute,private userService:UserService,private service:BookService,private cartService:CartService,private iteraction:InteractionService) { }
+  wishlist:Wishlist= new Wishlist(0,0);
+  wishlists:any;
+  tempWishlist:any;
+  constructor(private router:Router,private route:ActivatedRoute,private userService:UserService,private service:BookService,private cartService:CartService,private iteraction:InteractionService,private wishlistService:WishlistService) { }
 
   ngOnInit(): void {
     this.service.getBookRecords().subscribe(data=>{
       console.log("Book Data retrieved successfully",data);
       this.books=data;
     });
-    this.cartService.getAllCartRecords().subscribe(data=>{
-      console.log("cart data retrieved",data);
-      this.carts=data;
-    });
+    // this.cartService.getAllCartRecords().subscribe(data=>{
+    //   console.log("cart data retrieved",data);
+    //   this.carts=data;
+    // });
      this.userService.getUserRecordByToken(this.token).subscribe((getData:any)=>{
        console.log("User record retrieved successfully");
         this.user=getData.data;
+        this.cartService.getCartRecordByUserId(this.user.userID).subscribe(data=>{
+          console.log("Cart Data Retrieved successfully",data);
+          this.carts=data;
+          this.wishlistService.getWishlistRecordByUserId(this.user.userID).subscribe(data=>{
+            console.log("wishlist data retrieved successfully");
+            this.wishlists=data;
+          })
+       });
+      
      });
+    //  this.wishlistService.getAllWishlistRecords().subscribe(data=>{
+    //    console.log("wishlist data retrieved successfully");
+    //    this.wishlists=data;
+    //  })
+     this.sort="Relevance";
     // this.iteraction.teacherMessage$.subscribe(message=>{
     //   console.log("Search retrieved",message);
     //   this.search=message;
@@ -151,6 +169,40 @@ onChange(){
       this.books=data;
     });
   }}
+  moveToWishlist(Id:any){
+    // console.log(Id);
+    // this.iteraction.sendMessage(Id);
+    //// this.router.navigate(["wishlist",Id]);
+    if(this.wishlists.data.length==0){
+      this.wishlist.userID=this.user.userID;
+      this.wishlist.bookID=Id;
+      this.wishlistService.insertWishList(this.wishlist).subscribe(data=>{
+          console.log("Wishlist added successfully",data);
+          window.location.reload();
+      });
+    }
+    else{
+      // this.wishlistService.getWishlistRecordByBookId(Id).subscribe(data=>{
+        this.cartService.getCartRecordByUserAndBookId(this.user.userID,Id).subscribe(data=>{
+        console.log("Wishlist retrieved for book id",data);
+        this.tempWishlist=data;
+        if(this.tempWishlist.data==null){
+          this.wishlist.userID=this.user.userID;
+          this.wishlist.bookID=Id;
+          this.wishlistService.insertWishList(this.wishlist).subscribe(data=>{
+          console.log("Wishlist added successfully",data);
+        });
+        }
+        else{
+            alert("Book already present...Please check wishlist !!!")
+        }
+        window.location.reload();
+      }) 
+    }
+  }
+  goToWishlist(){
+    this.router.navigate(["wishlist",this.token]);
+  }
   sendToken(){
     console.log("Token on dashboard",this.token);
     this.iteraction.sendMessage(this.token);

@@ -31,6 +31,9 @@ export class HeaderComponent implements OnInit {
     //  console.log(this.token);
     //  });
   }
+  signOut(){
+    this.router.navigate(["login"]);
+  }
   searchBook(){
     this.interaction.sendMessage(this.search);
   }
@@ -49,6 +52,7 @@ export class HeaderComponent implements OnInit {
     this.loggedIn=true;
     this.router.navigate(['login']);
   }
+
   // toUser(){
   //   this.router.navigate(['user']);
   // }

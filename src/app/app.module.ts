@@ -19,6 +19,7 @@ import { UserProfileComponent } from './MyComponents/user-profile/user-profile.c
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CustomerComponent } from './MyComponents/customer/customer.component';
 import { SummaryComponent } from './MyComponents/summary/summary.component';
+import { WishlistComponent } from './MyComponents/wishlist/wishlist.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { SummaryComponent } from './MyComponents/summary/summary.component';
     DeveloperdetailsComponent,
     UserProfileComponent,
     CustomerComponent,
-    SummaryComponent
+    SummaryComponent,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,

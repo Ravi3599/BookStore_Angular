@@ -32,4 +32,10 @@ export class CartService {
   getCartRecordByBookId(Id:any){
     return this.http.get("http://localhost:8080/cartdetails/retrieveCartByBookId/"+Id);
   }
+  getCartRecordByUserId(Id:any){
+    return this.http.get("http://localhost:8080/cartdetails/retrieveCartByUserId/"+Id);
+  }
+  getCartRecordByUserAndBookId(userId:any,bookId:any){
+    return this.http.get("http://localhost:8080/cartdetails/retrieveCartByUserAndBookId/"+userId+"/"+bookId);
+  }
 }
